@@ -64,7 +64,7 @@ qa_chain = (
 
 # related question generate
 import re
-from langchain.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
+from langchain_classic.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 
 related_question_system_prompt = SystemMessagePromptTemplate.from_template(
 """
