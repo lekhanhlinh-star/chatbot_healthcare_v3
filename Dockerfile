@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3.10 \
     python3.10-dev \
     python3.10-venv \
+    git \
     software-properties-common && \
     ln -sf python3.10 /usr/bin/python && \
     ln -sf pip3 /usr/bin/pip && \
@@ -25,7 +26,7 @@ WORKDIR /chatbot_healthcare
 COPY requirements.txt .
 RUN pip install --upgrade pip setuptools wheel
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --ignore-installed blinker -r requirements.txt
 
 # Install Ollama
 RUN curl -fsSL https://ollama.com/install.sh | sh
