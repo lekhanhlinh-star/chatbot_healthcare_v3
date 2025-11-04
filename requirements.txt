@@ -1,0 +1,14 @@
+Flask
+flask-cors
+ollama
+langchain
+langchain_chroma
+langchain_ollama
+langchain_community
+faiss-cpu
+sentence-transformers
+OpenCC
+edge-tts
+git+https://github.com/openai/whisper.git
+flask[async]
+langchain_classic

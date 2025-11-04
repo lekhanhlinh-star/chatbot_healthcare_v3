@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>選擇跨領域團隊合作照護教案</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 30px;
+      font-size: 1.8rem;
+    }
+
+    .specialty-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .specialty-item {
+      background: #f8f9fa;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      text-align: left;
+    }
+
+    .specialty-item:hover {
+      border-color: #007bff;
+      background: #e3f2fd;
+    }
+
+    .specialty-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 20px;
+      border: 2px solid #ddd;
+    }
+
+    .specialty-info h3 {
+      margin: 0 0 5px 0;
+      color: #333;
+      font-size: 1.2rem;
+    }
+
+    .specialty-info p {
+      margin: 0;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+        margin: 10px;
+      }
+      
+      .specialty-item {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .specialty-avatar {
+        margin: 0 0 15px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>選擇跨領域團隊合作照護教案</h1>
+    
+    <div class="specialty-list">
+      <!-- GDM - 妊娠期糖尿病 -->
+      <div class="specialty-item" onclick="selectSpecialty('gdm')">
+        <img src="static/images/female_doctor.jpg" alt="營養師" class="specialty-avatar">
+        <div class="specialty-info">
+          <h3>GDM: 妊娠糖尿病專家</h3>
+        </div>
+      </div>
+
+      <!-- PPD - 產後憂鬱症 -->
+      <div class="specialty-item" onclick="selectSpecialty('ppd')">
+        <img src="static/images/female_doctor.jpg" alt="心理諮商師" class="specialty-avatar">
+        <div class="specialty-info">
+          <h3>PPD: 產後憂鬱症專家</h3>
+        </div>
+      </div>
+
+      <!-- CKD - 慢性腎臟病 -->
+      <div class="specialty-item" onclick="selectSpecialty('ckd')">
+        <img src="static/images/male_doctor.jpg" alt="藥劑師" class="specialty-avatar">
+        <div class="specialty-info">
+          <h3>CKD: 慢性腎臟病專家</h3>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function selectSpecialty(specialtyType) {
+      // 儲存選擇的專科到 localStorage
+      localStorage.setItem('selectedSpecialty', specialtyType);
+      
+      // 根據專科設定對應的角色和醫生圖片
+      let doctorImage, roleName, roleType;
+      
+      switch(specialtyType) {
+        case 'gdm':
+          doctorImage = 'static/images/female_doctor.jpg';
+          roleName = '營養師';
+          roleType = 'nutritionist';
+          break;
+        case 'ckd':
+          doctorImage = 'static/images/male_doctor.jpg';
+          roleName = '藥劑師';
+          roleType = 'doctor';
+          break;
+        case 'ppd':
+          doctorImage = 'static/images/female_doctor.jpg';
+          roleName = '心理諮商師';
+          roleType = 'counselor';
+          break;
+        default:
+          doctorImage = 'static/images/male_doctor.jpg';
+          roleName = '醫師';
+          roleType = 'doctor';
+      }
+      
+      // 儲存醫生資訊到 localStorage
+      localStorage.setItem('selectedDoctor', doctorImage);
+      localStorage.setItem('selectedRole', roleType);
+      localStorage.setItem('selectedRoleName', roleName);
+      
+      // 跳轉到聊天頁面
+      window.location.href = '/chat';
+    }
+  </script>
+</body>
+</html>

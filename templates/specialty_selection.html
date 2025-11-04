@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>選擇醫療諮詢專科</title>
+  <link rel="stylesheet" href="static/style.css"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .selection-container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      max-width: 900px;
+      width: 90%;
+      text-align: center;
+    }
+
+    .title {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 40px;
+    }
+
+    .specialty-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .specialty-card {
+      background: #f8f9fa;
+      border-radius: 15px;
+      padding: 30px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 3px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .specialty-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: left 0.5s;
+    }
+
+    .specialty-card:hover::before {
+      left: 100%;
+    }
+
+    .specialty-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      border-color: #007bff;
+    }
+
+    .gdm-card:hover {
+      border-color: #28a745;
+      background: linear-gradient(135deg, #e8f5e8, #f8f9fa);
+    }
+
+    .ckd-card:hover {
+      border-color: #dc3545;
+      background: linear-gradient(135deg, #f8e8e8, #f8f9fa);
+    }
+
+    .ppd-card:hover {
+      border-color: #6f42c1;
+      background: linear-gradient(135deg, #f0e8f8, #f8f9fa);
+    }
+
+    .specialty-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      border: 4px solid #ddd;
+      transition: all 0.3s ease;
+    }
+
+    .specialty-card:hover .specialty-avatar {
+      border-color: #007bff;
+      transform: scale(1.1);
+    }
+
+    .specialty-name {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .specialty-description {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+
+    .specialty-expertise {
+      font-size: 0.9rem;
+      color: #888;
+      font-style: italic;
+    }
+
+    .start-btn {
+      background: linear-gradient(135deg, #007bff, #0056b3);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 15px;
+    }
+
+    .start-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      .specialty-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .title {
+        font-size: 2rem;
+      }
+      
+      .selection-container {
+        padding: 20px;
+        margin: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="selection-container">
+    <h1 class="title">🏥 醫療諮詢專科選擇</h1>
+    <p class="subtitle">請選擇您需要諮詢的醫療專科，我們將為您提供專業的協助</p>
+    
+    <div class="specialty-grid">
+      <!-- GDM - 妊娠期糖尿病 -->
+      <div class="specialty-card gdm-card" onclick="selectSpecialty('gdm')">
+        <img src="static/images/female_doctor.jpg" alt="營養師" class="specialty-avatar">
+        <div class="specialty-name">妊娠期糖尿病</div>
+        <div class="specialty-description">GDM (Gestational Diabetes Mellitus)</div>
+        <div class="specialty-expertise">專精營養諮詢與血糖管理</div>
+        <button class="start-btn">開始諮詢</button>
+      </div>
+
+      <!-- CKD - 慢性腎臟病 -->
+      <div class="specialty-card ckd-card" onclick="selectSpecialty('ckd')">
+        <img src="static/images/male_doctor.jpg" alt="藥劑師" class="specialty-avatar">
+        <div class="specialty-name">慢性腎臟病</div>
+        <div class="specialty-description">CKD (Chronic Kidney Disease)</div>
+        <div class="specialty-expertise">專精腎臟保健與藥物諮詢</div>
+        <button class="start-btn">開始諮詢</button>
+      </div>
+
+      <!-- PPD - 產後憂鬱症 -->
+      <div class="specialty-card ppd-card" onclick="selectSpecialty('ppd')">
+        <img src="static/images/female_doctor.jpg" alt="心理諮商師" class="specialty-avatar">
+        <div class="specialty-name">產後憂鬱症</div>
+        <div class="specialty-description">PPD (Postpartum Depression)</div>
+        <div class="specialty-expertise">專精心理諮商與情緒支持</div>
+        <button class="start-btn">開始諮詢</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function selectSpecialty(specialtyType) {
+      // 儲存選擇的專科到 localStorage
+      localStorage.setItem('selectedSpecialty', specialtyType);
+      
+      // 根據專科設定對應的角色和醫生圖片
+      let doctorImage, roleName, roleType;
+      
+      switch(specialtyType) {
+        case 'gdm':
+          doctorImage = 'static/images/female_doctor.jpg';
+          roleName = '營養師';
+          roleType = 'nutritionist';
+          break;
+        case 'ckd':
+          doctorImage = 'static/images/male_doctor.jpg';
+          roleName = '藥劑師';
+          roleType = 'doctor';
+          break;
+        case 'ppd':
+          doctorImage = 'static/images/female_doctor.jpg';
+          roleName = '心理諮商師';
+          roleType = 'counselor';
+          break;
+        default:
+          doctorImage = 'static/images/male_doctor.jpg';
+          roleName = '醫師';
+          roleType = 'doctor';
+      }
+      
+      // 儲存醫生資訊到 localStorage
+      localStorage.setItem('selectedDoctor', doctorImage);
+      localStorage.setItem('selectedRole', roleType);
+      localStorage.setItem('selectedRoleName', roleName);
+      
+      // 跳轉到聊天頁面
+      window.location.href = '/chat';
+    }
+
+    // 添加卡片點擊效果
+    document.querySelectorAll('.specialty-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-10px) scale(1.02)';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+  </script>
+</body>
+</html>

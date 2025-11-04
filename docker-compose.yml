@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  chatbot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      network: host   # thêm dòng này để build có mạng
+    container_name: chatbot_healthcare
+    volumes:
+      - .:/chatbot_healthcare
+    ports:
+      - "8512:80"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
